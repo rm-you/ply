@@ -1,3 +1,4 @@
+from __future__ import print_function
 import functools
 import os
 import subprocess
@@ -25,7 +26,7 @@ class Repo(object):
 
     def warn(self, msg):
         if not self.supress_warnings:
-            print >> sys.stderr, 'warning: %s' % msg
+            print('warning: %s' % msg, file=sys.stderr)
 
     @cmd
     def add(self, filename):
@@ -60,8 +61,8 @@ class Repo(object):
         stdout, stderr = proc.communicate()
 
         if not quiet:
-            print stderr
-            print stdout
+            print(stderr)
+            print(stdout)
 
         if proc.returncode == 0:
             if 'atch already applied' in stdout:
